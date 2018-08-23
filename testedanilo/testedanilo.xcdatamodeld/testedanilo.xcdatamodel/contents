@@ -3,6 +3,8 @@
     <entity name="CITY" representedClassName="CityMO" syncable="YES">
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="weathers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WEATHER" inverseName="city" inverseEntity="WEATHER" syncable="YES"/>
     </entity>
@@ -16,7 +18,7 @@
         <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CITY" inverseName="weathers" inverseEntity="CITY" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CITY" positionX="-243" positionY="63" width="128" height="103"/>
+        <element name="CITY" positionX="-243" positionY="63" width="128" height="135"/>
         <element name="WEATHER" positionX="-18" positionY="54" width="128" height="148"/>
     </elements>
 </model>

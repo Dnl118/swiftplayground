@@ -11,7 +11,7 @@ import CoreData
 
 class MainViewModel {
     
-    func getCities() -> [City] {
+    func getCitiesFromFakeService() -> [City] {
         return JSONParser().parseCities()
     }
     
@@ -26,15 +26,51 @@ class MainViewModel {
                 newCity.setValue(cityModel.id, forKey: "id")
                 newCity.setValue(cityModel.name, forKey: "name")
                 newCity.setValue(cityModel.country, forKey: "country")
+                newCity.setValue(cityModel.lat, forKey: "lat")
+                newCity.setValue(cityModel.lon, forKey: "lon")
                 
                 do {
                     try context.save()
-                    print("City saved: \(cityModel.toString())")
+                    //                    print("City saved: \(cityModel.toString())")
                 } catch {
                     print("Failed saving city: \(cityModel.toString())")
                 }
             }
         })
+    }
+    
+    func getCitiesFromDatabase() -> [City] {
+        let context : NSManagedObjectContext = CoreDataManager.getInstance().managedObjectContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CITY")
+        
+        var resultCitiesArray : [City] = []
+        
+        do {
+            let result = try context.fetch(request)
+            
+            guard result.isEmpty else {
+                return resultCitiesArray
+            }
+            
+            let citiesMO : [CityMO] = result.compactMap {
+                guard let cityMO = $0 as? CityMO else {
+                    return nil
+                }
+                return cityMO
+            }
+            
+            resultCitiesArray = citiesMO.compactMap {
+                let cityMO : CityMO = $0
+
+                return City(id: Int(cityMO.id), name: cityMO.name ?? "", country: cityMO.country ?? "", lat: cityMO.lat, lon: cityMO.lon)
+            }
+            
+        } catch {
+            print("Erro while selecting cities from database.")
+        }
+        
+        return resultCitiesArray
     }
     
     func save(citiesModel : [City]){

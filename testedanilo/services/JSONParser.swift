@@ -12,9 +12,7 @@ class JSONParser {
     
     func parseCities() -> [City] {
         
-        print(CitiesService().getCitiesJSON().prefix(50))
-        
-        let cities: [City] = CitiesService().getCitiesJSON().prefix(15).compactMap {
+        let cities: [City] = CitiesService().getCitiesJSON().prefix(10).compactMap {
             var currentCity : Dictionary<String, Any> = $0
             
             if let id : Int = currentCity["id"] as? Int,
@@ -24,7 +22,7 @@ class JSONParser {
                 let lat : Double = coord["lat"] as? Double,
                 let lon : Double = coord["lon"] as? Double {
                 
-                return City(id: id,name: name,country: country, lat: lat, lon: lon)
+                return City(id: id, name: name, country: country, lat: lat, lon: lon)
             }
             
             return nil

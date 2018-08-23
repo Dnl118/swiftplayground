@@ -19,20 +19,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="apG-jj-Az1">
+                                <rect key="frame" x="0.0" y="64" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="2zE-rO-X1F"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xXk-lB-9gw" id="IGF-JY-1CO"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zBR-6V-Hct">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" text="" id="apG-jj-Az1">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="xXk-lB-9gw" id="IGF-JY-1CO"/>
-                                    </connections>
-                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityCell" rowHeight="49" id="LLz-cz-3dH" customClass="MainTableViewCell" customModule="testedanilo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="84" width="375" height="49"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="49"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LLz-cz-3dH" id="3Jp-bq-u7b">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="48.5"/>
@@ -60,10 +62,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="zBR-6V-Hct" firstAttribute="top" secondItem="IkZ-0l-5Rg" secondAttribute="top" id="QrN-yI-TCb"/>
-                            <constraint firstItem="zBR-6V-Hct" firstAttribute="leading" secondItem="IkZ-0l-5Rg" secondAttribute="leading" id="WXk-AH-ylI"/>
-                            <constraint firstItem="zBR-6V-Hct" firstAttribute="trailing" secondItem="IkZ-0l-5Rg" secondAttribute="trailing" id="bmf-Za-zni"/>
-                            <constraint firstItem="zBR-6V-Hct" firstAttribute="bottom" secondItem="IkZ-0l-5Rg" secondAttribute="bottom" id="sjJ-zq-rFk"/>
+                            <constraint firstItem="zBR-6V-Hct" firstAttribute="leading" secondItem="IkZ-0l-5Rg" secondAttribute="leading" id="AUb-Z4-UXC"/>
+                            <constraint firstItem="IkZ-0l-5Rg" firstAttribute="trailing" secondItem="apG-jj-Az1" secondAttribute="trailing" id="FPr-b2-Eaf"/>
+                            <constraint firstItem="zBR-6V-Hct" firstAttribute="bottom" secondItem="IkZ-0l-5Rg" secondAttribute="bottom" id="HpK-Xd-kuk"/>
+                            <constraint firstItem="apG-jj-Az1" firstAttribute="top" secondItem="IkZ-0l-5Rg" secondAttribute="top" id="K3b-26-gPh"/>
+                            <constraint firstItem="zBR-6V-Hct" firstAttribute="trailing" secondItem="IkZ-0l-5Rg" secondAttribute="trailing" id="QSI-mh-2gC"/>
+                            <constraint firstItem="apG-jj-Az1" firstAttribute="leading" secondItem="IkZ-0l-5Rg" secondAttribute="leading" id="coA-Mj-wGI"/>
+                            <constraint firstItem="zBR-6V-Hct" firstAttribute="top" secondItem="apG-jj-Az1" secondAttribute="bottom" id="hBs-EO-Ygp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IkZ-0l-5Rg"/>
                     </view>
@@ -243,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAi-BZ-JS5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1345" y="-753"/>
+            <point key="canvasLocation" x="1642" y="-752"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rJz-JN-Oa0">

@@ -2,7 +2,7 @@
 //  CityMO+CoreDataProperties.swift
 //  testedanilo
 //
-//  Created by mosyle on 17/08/18.
+//  Created by mosyle on 23/08/18.
 //  Copyright © 2018 mosyle. All rights reserved.
 //
 //
@@ -17,9 +17,11 @@ extension CityMO {
         return NSFetchRequest<CityMO>(entityName: "CITY")
     }
 
+    @NSManaged public var country: String?
     @NSManaged public var id: Int32
     @NSManaged public var name: String?
-    @NSManaged public var country: String?
+    @NSManaged public var lat: Double
+    @NSManaged public var lon: Double
     @NSManaged public var weathers: NSSet?
 
 }

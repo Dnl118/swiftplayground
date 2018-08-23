@@ -31,7 +31,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         searchBar.delegate = self
         
-        cities = viewModel.getCities()
+        cities = viewModel.getCitiesFromFakeService()
+        
+        cities = viewModel.getCitiesFromDatabase()
         
         viewModel.deleteAll()
         viewModel.save(citiesModel: cities)
@@ -61,7 +63,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         present(city: currentCities[indexPath.row])
     }
-    
     
     func present(city: City) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
