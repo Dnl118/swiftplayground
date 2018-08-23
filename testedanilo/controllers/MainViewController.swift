@@ -33,11 +33,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         cities = viewModel.getCitiesFromDatabase()
         currentCities = cities
+        
+        print("from database: \(cities.count)")
 
         viewModel.getCitiesFromFakeService(completion: { cities in
             self.cities = cities
             self.currentCities = cities
 
+            print("from service: \(cities.count)")
             DispatchQueue.main.async {
                 self.table.reloadData()
             }

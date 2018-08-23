@@ -27,7 +27,7 @@ class MainViewModel {
             }
             
             citiesFromDatabase.forEach { databaseCity in
-                guard !citiesFromDatabase.contains(where: { city in
+                guard citiesFromDatabase.contains(where: { city in
                     databaseCity.id == city.id
                 }) else {
                     self.deleteCity(city: databaseCity)
@@ -35,16 +35,16 @@ class MainViewModel {
                 }
             }
             
-            //            let context : NSManagedObjectContext = CoreDataManager.getInstance().managedObjectContext
-            //
-            //            context.perform {
-            //                do {
-            //                    try context.save()
-            //                } catch {
-            //                    print("error: \(error as NSError)")
-            //                }
-            completion(citiesFromService)
-            //            }
+            let context : NSManagedObjectContext = CoreDataManager.getInstance().managedObjectContext
+            
+            context.perform {
+                do {
+                    try context.save()
+                } catch {
+                    print("error: \(error as NSError)")
+                }
+                completion(citiesFromService)
+            }
             
         }
     }
@@ -63,11 +63,7 @@ class MainViewModel {
                 cityMO?.country = city.country
                 cityMO?.lat = city.lat
                 cityMO?.lon = city.lon
-                
-                if context.hasChanges {
-                    try context.save()
-                    print("updating cities")
-                }
+
             } catch {
                 print("error while updating cities \(error)")
             }
@@ -90,7 +86,7 @@ class MainViewModel {
                 
                 do {
                     try context.save()
-                    //                    print("City saved: \(cityModel.toString())")
+                    print("City saved: \(cityModel.toString())")
                 } catch {
                     print("Failed saving city: \(cityModel.toString())")
                 }
