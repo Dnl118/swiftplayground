@@ -33,7 +33,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         cities = viewModel.getCitiesFromFakeService()
         
-        cities = viewModel.getCitiesFromDatabase()
+//        cities = viewModel.getCitiesFromDatabase()
         
         viewModel.deleteAll()
         viewModel.save(citiesModel: cities)

@@ -2,7 +2,7 @@
 //  WeatherMO+CoreDataProperties.swift
 //  testedanilo
 //
-//  Created by mosyle on 17/08/18.
+//  Created by mosyle on 23/08/18.
 //  Copyright © 2018 mosyle. All rights reserved.
 //
 //
@@ -18,11 +18,11 @@ extension WeatherMO {
     }
 
     @NSManaged public var date: NSDate?
-    @NSManaged public var temp_max: Double
     @NSManaged public var date_text: String?
-    @NSManaged public var temp_min: Double
     @NSManaged public var humidity: Int16
     @NSManaged public var pressure: Int32
+    @NSManaged public var temp_max: Double
+    @NSManaged public var temp_min: Double
     @NSManaged public var city: CityMO?
 
 }

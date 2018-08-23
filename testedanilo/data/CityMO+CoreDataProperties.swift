@@ -19,9 +19,9 @@ extension CityMO {
 
     @NSManaged public var country: String?
     @NSManaged public var id: Int32
-    @NSManaged public var name: String?
     @NSManaged public var lat: Double
     @NSManaged public var lon: Double
+    @NSManaged public var name: String?
     @NSManaged public var weathers: NSSet?
 
 }
