@@ -38,7 +38,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
             self.weatherPresenterArray = array
 
             DispatchQueue.main.async {
-                print("from database size: \(self.weatherPresenterArray.count)")
+//                print("from database size: \(self.weatherPresenterArray.count)")
                 self.weatherTable.reloadData()
             }
         })
@@ -47,7 +47,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
             self.weatherPresenterArray = array
 
             DispatchQueue.main.async {
-                print("from service size: \(self.weatherPresenterArray.count)")
+//                print("from service size: \(self.weatherPresenterArray.count)")
                 self.weatherTable.reloadData()
             }
         })

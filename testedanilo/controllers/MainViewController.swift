@@ -31,14 +31,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         searchBar.delegate = self
         
-        cities = viewModel.getCitiesFromFakeService()
-        
-//        cities = viewModel.getCitiesFromDatabase()
-        
-        viewModel.deleteAll()
-        viewModel.save(citiesModel: cities)
-        
+        cities = viewModel.getCitiesFromDatabase()
         currentCities = cities
+
+        viewModel.getCitiesFromFakeService(completion: { cities in
+            self.cities = cities
+            self.currentCities = cities
+
+            DispatchQueue.main.async {
+                self.table.reloadData()
+            }
+        })
+//        viewModel.deleteAll()
+//        viewModel.save(citiesModel: cities)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

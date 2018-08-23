@@ -11,8 +11,67 @@ import CoreData
 
 class MainViewModel {
     
-    func getCitiesFromFakeService() -> [City] {
-        return JSONParser().parseCities()
+    func getCitiesFromFakeService(completion: @escaping (_ cities: [City]) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            let citiesFromService : [City] = JSONParser().parseCities()
+            let citiesFromDatabase : [City] = self.getCitiesFromDatabase()
+            
+            citiesFromService.forEach { serviceCity in
+                if citiesFromDatabase.contains(where: { city in
+                    serviceCity.id == city.id
+                }) {
+                    self.updateCity(city: serviceCity)
+                } else {
+                    self.save(cityModel: serviceCity)
+                }
+            }
+            
+            citiesFromDatabase.forEach { databaseCity in
+                guard !citiesFromDatabase.contains(where: { city in
+                    databaseCity.id == city.id
+                }) else {
+                    self.deleteCity(city: databaseCity)
+                    return
+                }
+            }
+            
+            //            let context : NSManagedObjectContext = CoreDataManager.getInstance().managedObjectContext
+            //
+            //            context.perform {
+            //                do {
+            //                    try context.save()
+            //                } catch {
+            //                    print("error: \(error as NSError)")
+            //                }
+            completion(citiesFromService)
+            //            }
+            
+        }
+    }
+    
+    func updateCity(city: City) {
+        let context : NSManagedObjectContext = CoreDataManager.getInstance().managedObjectContext
+        
+        context.perform {
+            let selectRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CITY")
+            selectRequest.predicate = NSPredicate(format: "id = %d", city.id)
+            
+            do {
+                let cityMO = try context.fetch(selectRequest).first as? CityMO
+                
+                cityMO?.name = city.name
+                cityMO?.country = city.country
+                cityMO?.lat = city.lat
+                cityMO?.lon = city.lon
+                
+                if context.hasChanges {
+                    try context.save()
+                    print("updating cities")
+                }
+            } catch {
+                print("error while updating cities \(error)")
+            }
+        }
     }
     
     func save(cityModel: City) {
@@ -49,7 +108,7 @@ class MainViewModel {
         do {
             let result = try context.fetch(request)
             
-            guard result.isEmpty else {
+            guard !result.isEmpty else {
                 return resultCitiesArray
             }
             
@@ -62,7 +121,7 @@ class MainViewModel {
             
             resultCitiesArray = citiesMO.compactMap {
                 let cityMO : CityMO = $0
-
+                
                 return City(id: Int(cityMO.id), name: cityMO.name ?? "", country: cityMO.country ?? "", lat: cityMO.lat, lon: cityMO.lon)
             }
             
@@ -78,6 +137,26 @@ class MainViewModel {
         for city in citiesModel {
             save(cityModel: city)
         }
+    }
+    
+    func deleteCity(city: City) {
+        let context : NSManagedObjectContext = CoreDataManager.getInstance().managedObjectContext
+        
+        context.perform {
+            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CITY")
+            deleteFetch.predicate = NSPredicate(format: "id = %d", city.id)
+            
+            do {
+                if let cityMO = try context.fetch(deleteFetch).first as? CityMO {
+                    context.delete(cityMO)
+                    try context.save()
+                    print("deleting city")
+                }
+            } catch {
+                print("error while updating cities")
+            }
+        }
+        
     }
     
     func deleteAll() {
@@ -96,5 +175,4 @@ class MainViewModel {
             }
         })
     }
-    
 }
