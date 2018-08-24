@@ -32,6 +32,8 @@ class WeatherCell: UITableViewCell {
         nightWeather.text = weatherPresenter.getNightWeather()
         pressure.text = weatherPresenter.getPressure()
         humidity.text = weatherPresenter.getHumidity()
+        
+        detailsStackView.isHidden = true
     }
     
     override func prepareForReuse() {

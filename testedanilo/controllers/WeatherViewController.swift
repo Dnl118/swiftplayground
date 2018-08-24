@@ -52,6 +52,8 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         })
         
+        self.weatherTable.estimatedRowHeight = 200
+        self.weatherTable.rowHeight = UITableViewAutomaticDimension
     }
     
     @objc func browseLocationAction(){
