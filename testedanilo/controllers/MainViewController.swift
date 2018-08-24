@@ -45,8 +45,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.table.reloadData()
             }
         })
-//        viewModel.deleteAll()
-//        viewModel.save(citiesModel: cities)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,17 +70,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         present(city: currentCities[indexPath.row])
     }
     
-    func present(city: City) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "WeatherViewController") as? WeatherViewController else {
-            return
-        }
-        
-        controller.currentCity = city
-        self.navigationController?.pushViewController(controller, animated: true)
-    }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
             currentCities = cities
@@ -97,4 +84,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         table.reloadData()
     }
 
+    func present(city: City) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let controller = storyboard.instantiateViewController(withIdentifier: "WeatherViewController") as? WeatherViewController else {
+            return
+        }
+        
+        controller.currentCity = city
+        
+        let nav = UINavigationController(rootViewController: controller)
+
+        splitViewController?.showDetailViewController(nav, sender: self)
+    }
 }

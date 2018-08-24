@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="So4-JC-L8K">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y9c-Ju-N3E">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -76,12 +76,27 @@
                     <connections>
                         <outlet property="searchBar" destination="apG-jj-Az1" id="Yau-iW-tD3"/>
                         <outlet property="table" destination="zBR-6V-Hct" id="QaA-6Y-PnO"/>
-                        <segue destination="ZR5-OI-nJ9" kind="show" identifier="to_weather" id="Wba-Sx-RgC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QFW-MV-Ol3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-18.399999999999999" y="-752.47376311844084"/>
+            <point key="canvasLocation" x="-703" y="-1791"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KEh-Pt-3zt">
+            <objects>
+                <navigationController id="8PG-x2-3fU" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Og3-Ug-PS5">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="xXk-lB-9gw" kind="relationship" relationship="rootViewController" id="MPM-lS-Ehj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DwI-8M-8cn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1482" y="-1791"/>
         </scene>
         <!--Weather View Controller-->
         <scene sceneID="ZIm-jY-0lX">
@@ -92,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xza-k7-TsB">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="66" width="375" height="601"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="weather_cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="weather_cell" rowHeight="200" id="g2l-Zg-9p9" customClass="WeatherCell" customModule="testedanilo" customModuleProvider="target">
@@ -211,14 +226,14 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3us-EW-uaK">
-                                <rect key="frame" x="0.0" y="109" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="1"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Apr-Or-Scn"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIg-oM-PPY">
-                                <rect key="frame" x="15" y="79" width="345" height="30"/>
+                                <rect key="frame" x="15" y="35" width="345" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="gum-4K-Y13"/>
                                 </constraints>
@@ -242,6 +257,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fdL-Zs-alW"/>
                     </view>
+                    <navigationItem key="navigationItem" id="1y0-bC-EI6"/>
                     <connections>
                         <outlet property="cityName" destination="HIg-oM-PPY" id="SAx-rG-rT1"/>
                         <outlet property="weatherTable" destination="Xza-k7-TsB" id="TVA-u5-vGO"/>
@@ -250,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKW-yj-oP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="832.79999999999995" y="-752.47376311844084"/>
+            <point key="canvasLocation" x="-1482" y="-1072"/>
         </scene>
         <!--Browse Location Controller-->
         <scene sceneID="Nqj-ua-rsO">
@@ -265,23 +281,19 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAi-BZ-JS5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1642" y="-752"/>
+            <point key="canvasLocation" x="-703" y="-1073"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="rJz-JN-Oa0">
+        <!--Split View Controller-->
+        <scene sceneID="sXn-Lm-rja">
             <objects>
-                <navigationController id="So4-JC-L8K" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KQp-zG-a7i">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
+                <splitViewController id="Y9c-Ju-N3E" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="xXk-lB-9gw" kind="relationship" relationship="rootViewController" id="vRE-YC-b40"/>
+                        <segue destination="8PG-x2-3fU" kind="relationship" relationship="masterViewController" id="73K-yJ-gah"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u4L-MF-HP9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7EQ-qU-V2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-894" y="-752"/>
+            <point key="canvasLocation" x="-2505" y="-1454"/>
         </scene>
     </scenes>
 </document>
