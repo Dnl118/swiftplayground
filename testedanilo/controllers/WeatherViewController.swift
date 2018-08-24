@@ -23,6 +23,30 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var currentCity : City = City(id: 0, name: "Default City", country: "DC", lat: 0, lon: 0)
     
+    //refresh
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        
+        refreshControl.addTarget(self, action:
+            #selector(WeatherViewController.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        viewModel.getWeathersFromService(cityID: currentCity.id, completion: { array in
+            self.weatherPresenterArray = array
+            
+            DispatchQueue.main.async {
+                self.weatherTable.reloadData()
+                refreshControl.endRefreshing()
+                print("Refreshed!!!")
+            }
+        })
+    }
+    //refresh
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,8 +76,9 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         })
         
-        self.weatherTable.estimatedRowHeight = 200
-        self.weatherTable.rowHeight = UITableViewAutomaticDimension
+        weatherTable.estimatedRowHeight = 200
+        weatherTable.rowHeight = UITableViewAutomaticDimension
+        weatherTable.addSubview(refreshControl)
     }
     
     @objc func browseLocationAction(){
