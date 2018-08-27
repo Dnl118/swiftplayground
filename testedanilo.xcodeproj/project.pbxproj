@@ -16,6 +16,7 @@
 		31276D3C21345F6D004FA2C0 /* PlaceholderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31276D3B21345F6D004FA2C0 /* PlaceholderController.swift */; };
 		31276D3E21346574004FA2C0 /* PlaceholderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31276D3D21346574004FA2C0 /* PlaceholderViewModel.swift */; };
 		31276D4021347204004FA2C0 /* ImagePlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31276D3F21347203004FA2C0 /* ImagePlaceholder.swift */; };
+		31276D4221347A90004FA2C0 /* PlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31276D4121347A90004FA2C0 /* PlaceholderCell.swift */; };
 		313CA25C2121BD8E003DC311 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313CA25B2121BD8E003DC311 /* AppDelegate.swift */; };
 		313CA2612121BD8E003DC311 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 313CA25F2121BD8E003DC311 /* Main.storyboard */; };
 		313CA2642121BD8E003DC311 /* testedanilo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 313CA2622121BD8E003DC311 /* testedanilo.xcdatamodeld */; };
@@ -66,6 +67,7 @@
 		31276D3B21345F6D004FA2C0 /* PlaceholderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderController.swift; sourceTree = "<group>"; };
 		31276D3D21346574004FA2C0 /* PlaceholderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderViewModel.swift; sourceTree = "<group>"; };
 		31276D3F21347203004FA2C0 /* ImagePlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePlaceholder.swift; sourceTree = "<group>"; };
+		31276D4121347A90004FA2C0 /* PlaceholderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderCell.swift; sourceTree = "<group>"; };
 		313CA2582121BD8E003DC311 /* testedanilo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testedanilo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		313CA25B2121BD8E003DC311 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		313CA2602121BD8E003DC311 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			children = (
 				313CA2902121C9DC003DC311 /* MainTableViewCell.swift */,
 				31E3C5BC21234E1B00286021 /* WeatherCell.swift */,
+				31276D4121347A90004FA2C0 /* PlaceholderCell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				311B995E212EEA64008AC618 /* WeatherMO+CoreDataProperties.swift in Sources */,
 				313CA2932121DEA9003DC311 /* City.swift in Sources */,
 				311B995C212EEA64008AC618 /* CityMO+CoreDataProperties.swift in Sources */,
+				31276D4221347A90004FA2C0 /* PlaceholderCell.swift in Sources */,
 				31999E1D212DA44600243751 /* BrowseLocationController.swift in Sources */,
 				31276D3E21346574004FA2C0 /* PlaceholderViewModel.swift in Sources */,
 				31276D4021347204004FA2C0 /* ImagePlaceholder.swift in Sources */,

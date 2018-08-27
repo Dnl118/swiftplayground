@@ -15,13 +15,15 @@ struct ImagePlaceholder {
     init(url: URLComponents) {
         self.url = url
         
-        guard let queryItems : [URLQueryItem] = url.queryItems,
-            let textQueryItem : URLQueryItem = queryItems.first(where: { $0.name == "text"}),
-            let text : String = textQueryItem.value else {
-            self.text = "Error"
-            return
-        }
+        print(url.queryItems?.count)
         
-        self.text = text
+        if let queryItems : [URLQueryItem] = url.queryItems,
+            let textQueryItem : URLQueryItem = queryItems.first(where: { $0.name == "text"}),
+            let text : String = textQueryItem.value {
+            
+            self.text = text
+        } else {
+            self.text = "Error"
+        }
     }
 }

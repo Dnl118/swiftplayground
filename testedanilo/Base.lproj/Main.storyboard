@@ -110,19 +110,46 @@
                                 <rect key="frame" x="15" y="35" width="345" height="617"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ydq-L8-nUg">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="195" height="165"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="RI2-lH-2O1">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="PlaceholderCell" reuseIdentifier="PlaceholderCell" id="RI2-lH-2O1" customClass="PlaceholderCell" customModule="testedanilo" customModuleProvider="target">
+                                        <rect key="frame" x="75" y="0.0" width="195" height="165"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="195" height="165"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtF-F0-69O">
+                                                    <rect key="frame" x="5" y="5" width="185" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="120" id="WG2-T6-9FW"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TaY-xJ-i5i">
+                                                    <rect key="frame" x="13" y="130" width="169" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="TaY-xJ-i5i" firstAttribute="leading" secondItem="RI2-lH-2O1" secondAttribute="leadingMargin" constant="5" id="DWr-ju-RlV"/>
+                                            <constraint firstItem="TaY-xJ-i5i" firstAttribute="top" secondItem="qtF-F0-69O" secondAttribute="bottom" constant="5" id="P3b-or-i8a"/>
+                                            <constraint firstItem="qtF-F0-69O" firstAttribute="top" secondItem="RI2-lH-2O1" secondAttribute="top" constant="5" id="Qza-Xj-OtQ"/>
+                                            <constraint firstItem="qtF-F0-69O" firstAttribute="leading" secondItem="RI2-lH-2O1" secondAttribute="leading" constant="5" id="XxH-3T-pZU"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="TaY-xJ-i5i" secondAttribute="bottom" constant="5" id="g3r-my-r2Z"/>
+                                            <constraint firstAttribute="trailing" secondItem="qtF-F0-69O" secondAttribute="trailing" constant="5" id="g50-vD-vN1"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="TaY-xJ-i5i" secondAttribute="trailing" constant="5" id="hVz-Ss-gH3"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="image" destination="qtF-F0-69O" id="qwZ-fD-e3P"/>
+                                            <outlet property="text" destination="TaY-xJ-i5i" id="Mfr-en-e3o"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -146,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVE-yq-AY4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1482" y="-388"/>
+            <point key="canvasLocation" x="-1482.4000000000001" y="-388.15592203898052"/>
         </scene>
         <!--Weather View Controller-->
         <scene sceneID="ZIm-jY-0lX">

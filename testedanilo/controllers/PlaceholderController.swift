@@ -15,20 +15,31 @@ class PlaceholderController : UIViewController, UICollectionViewDelegate, UIColl
     
     let viewModel : PlaceholderViewModel = PlaceholderViewModel()
     
-    let placeholders : [ImagePlaceholder] = []
+    var placeholders : [ImagePlaceholder] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Placeholders"
         
+        collection.delegate = self
+        collection.dataSource = self
+        
+        placeholders = viewModel.getImageURLArray(length: 30)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let placeholder: ImagePlaceholder = placeholders[indexPath.row]
+        
+        let cell: PlaceholderCell = collection.dequeueReusableCell(withReuseIdentifier: "PlaceholderCell", for: indexPath) as! PlaceholderCell
+        
+        cell.set(imagePlaceholder: placeholder)
+        
+        return cell
     }
 }
