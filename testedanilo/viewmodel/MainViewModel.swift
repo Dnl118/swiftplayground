@@ -86,7 +86,7 @@ class MainViewModel {
                 
                 do {
                     try context.save()
-                    print("City saved: \(cityModel.toString())")
+//                    print("City saved: \(cityModel.toString())")
                 } catch {
                     print("Failed saving city: \(cityModel.toString())")
                 }
