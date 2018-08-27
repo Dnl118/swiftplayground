@@ -24,12 +24,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.title = "Cities"
         
+        let browseButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(presentPlaceholders))
+        
+        self.navigationItem.rightBarButtonItem = browseButton
+        
         table.tableFooterView = UIView()
         
         table.delegate = self
         table.dataSource = self
         
         searchBar.delegate = self
+        
         
         cities = viewModel.getCitiesFromDatabase()
         currentCities = cities
@@ -95,6 +100,18 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let nav = UINavigationController(rootViewController: controller)
 
+        splitViewController?.showDetailViewController(nav, sender: self)
+    }
+    
+    @objc func presentPlaceholders() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let controller = storyboard.instantiateViewController(withIdentifier: "PlaceholderController") as? PlaceholderController else {
+            return
+        }
+        
+        let nav = UINavigationController(rootViewController: controller)
+        
         splitViewController?.showDetailViewController(nav, sender: self)
     }
 }
