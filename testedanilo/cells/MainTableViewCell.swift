@@ -16,4 +16,10 @@ class MainTableViewCell: UITableViewCell {
         cityLabel.text = city.toString()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        cityLabel.text = ""
+    }
+    
 }

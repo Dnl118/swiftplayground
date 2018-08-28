@@ -23,6 +23,6 @@ class PlaceholderCell : UICollectionViewCell {
         super.prepareForReuse()
         
         image.cancelKFDownload()
-        text.text = "Reuse"
+        text.text = ""
     }
 }

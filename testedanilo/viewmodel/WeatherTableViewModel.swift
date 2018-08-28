@@ -11,9 +11,11 @@ import CoreData
 
 class WeatherTableViewModel {
     
+    let weatherService = WeatherService()
+    
     func getWeathersFromService(cityID: Int, completion: @escaping (_ weathers: [WeatherPresenter]) -> Void) {
         
-        WeatherService().getWeather(cityID: cityID, completion: { success, array in
+        weatherService.getWeather(cityID: cityID, completion: { success, array in
             
             guard success,
                 let notOptionalArray : [Weather] = array else {
@@ -28,6 +30,7 @@ class WeatherTableViewModel {
             
             completion(weatherPresenterArray)
         })
+        
     }
     
     func weatherToWeatherPresenter(weathers : [Weather]?) -> [WeatherPresenter] {
@@ -38,7 +41,7 @@ class WeatherTableViewModel {
             var weatherAux : Weather = weatherArray[0]
             
             for weather in weatherArray {
-//                print("weatherAux.date: \(weatherAux.date) | weather.date: \(weather.date)")
+                //                print("weatherAux.date: \(weatherAux.date) | weather.date: \(weather.date)")
                 if (Calendar.current.isDate(weatherAux.date, inSameDayAs: weather.date)) {
                     weatherArrayForSameDay.append(weather)
                 } else {
@@ -48,7 +51,7 @@ class WeatherTableViewModel {
                     weatherAux = weather
                     weatherArrayForSameDay.append(weather)
                     
-//                    print("weather: \(weatherArrayForSameDay.count)")
+                    //                    print("weather: \(weatherArrayForSameDay.count)")
                 }
             }
         }
@@ -96,7 +99,7 @@ class WeatherTableViewModel {
             let deletedWeathers = weathersMO.compactMap {
                 if let weatherMO = $0 as? WeatherMO {
                     context.delete(weatherMO)
-//                    print("deleted: \(weatherMO.date_text ?? "ERROR")")
+                    //                    print("deleted: \(weatherMO.date_text ?? "ERROR")")
                 }
             }
             
@@ -106,7 +109,7 @@ class WeatherTableViewModel {
                 print("Error while saving context")
             }
             
-//            print("deletedWeathers.count: \(deletedWeathers.count)")
+            //            print("deletedWeathers.count: \(deletedWeathers.count)")
         }
     }
     
@@ -179,7 +182,7 @@ class WeatherTableViewModel {
             weathers.sort(by: {
                 $0.date.compare($1.date) == .orderedAscending
             })
-
+            
             completion(self.weatherToWeatherPresenter(weathers: weathers))
         }
     }
