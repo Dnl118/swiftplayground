@@ -35,15 +35,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     }()
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        viewModel.getWeathersFromService(cityID: currentCity.id, completion: { array in
-            self.weatherPresenterArray = array
-            
-            DispatchQueue.main.async {
-                self.weatherTable.reloadData()
-                refreshControl.endRefreshing()
-                print("Refreshed!!!")
-            }
-        })
+        requestDataFromServer()
     }
     //refresh
     
@@ -67,18 +59,23 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         })
         
-        viewModel.getWeathersFromService(cityID: currentCity.id, completion: { array in
-            self.weatherPresenterArray = array
-
-            DispatchQueue.main.async {
-//                print("from service size: \(self.weatherPresenterArray.count)")
-                self.weatherTable.reloadData()
-            }
-        })
+        requestDataFromServer()
         
         weatherTable.estimatedRowHeight = 200
         weatherTable.rowHeight = UITableViewAutomaticDimension
         weatherTable.addSubview(refreshControl)
+    }
+    
+    func requestDataFromServer(){
+        viewModel.getWeathersFromService(cityID: currentCity.id, completion: { array in
+            self.weatherPresenterArray = array
+            
+            DispatchQueue.main.async {
+                //                print("from service size: \(self.weatherPresenterArray.count)")
+                self.weatherTable.reloadData()
+                self.refreshControl.endRefreshing()
+            }
+        })
     }
     
     @objc func browseLocationAction(){

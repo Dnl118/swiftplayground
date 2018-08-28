@@ -19,6 +19,22 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let viewModel : MainViewModel = MainViewModel()
     
+    //refresh
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        
+        refreshControl.addTarget(self, action:
+            #selector(MainViewController.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        requestDataFromFakeService()
+    }
+    //refresh
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,19 +51,29 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         searchBar.delegate = self
         
+        requestDataFromDatabase()
         
+        requestDataFromFakeService()
+        
+        table.addSubview(refreshControl)
+    }
+    
+    func requestDataFromDatabase(){
         cities = viewModel.getCitiesFromDatabase()
         currentCities = cities
         
         print("from database: \(cities.count)")
-
+    }
+    
+    func requestDataFromFakeService(){
         viewModel.getCitiesFromFakeService(completion: { cities in
             self.cities = cities
             self.currentCities = cities
-
+            
             print("from service: \(cities.count)")
             DispatchQueue.main.async {
                 self.table.reloadData()
+                self.refreshControl.endRefreshing()
             }
         })
     }
@@ -75,6 +101,35 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         present(city: currentCities[indexPath.row])
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            removeCity(indexPath: indexPath)
+        }
+    }
+    
+    func removeCity(indexPath: IndexPath){
+        let cityToDelete = currentCities[indexPath.row]
+        
+        presentConfirmDeleteAlert(cityToDelete: cityToDelete, indexPath: indexPath)
+    }
+    
+    func presentConfirmDeleteAlert(cityToDelete: City, indexPath: IndexPath){
+        let deleteAlert = UIAlertController(title: "Delete city", message: "Are you sure you want to delete \(cityToDelete.name)?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        deleteAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
+            self.viewModel.deleteCity(city: cityToDelete)
+            
+            self.currentCities.remove(at: indexPath.row)
+            self.table.deleteRows(at: [indexPath], with: .fade)
+        }))
+        
+        deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            //nothing to do
+        }))
+        
+        present(deleteAlert, animated: true, completion: nil)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
             currentCities = cities
@@ -88,7 +143,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         table.reloadData()
     }
-
+    
     func present(city: City) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
@@ -99,7 +154,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         controller.currentCity = city
         
         let nav = UINavigationController(rootViewController: controller)
-
+        
         splitViewController?.showDetailViewController(nav, sender: self)
     }
     
