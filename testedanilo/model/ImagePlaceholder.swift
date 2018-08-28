@@ -9,21 +9,12 @@
 import Foundation
 
 struct ImagePlaceholder {
-    let url: URLComponents
+    let url: URL
     let text: String
     
-    init(url: URLComponents) {
+    init(url: URL, text: String) {
         self.url = url
-        
-        print(url.queryItems?.count)
-        
-        if let queryItems : [URLQueryItem] = url.queryItems,
-            let textQueryItem : URLQueryItem = queryItems.first(where: { $0.name == "text"}),
-            let text : String = textQueryItem.value {
-            
-            self.text = text
-        } else {
-            self.text = "Error"
-        }
+        self.text = text
     }
+    
 }

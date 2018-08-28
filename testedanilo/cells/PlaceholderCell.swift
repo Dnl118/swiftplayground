@@ -16,14 +16,15 @@ class PlaceholderCell : UICollectionViewCell {
     @IBOutlet weak var text: UILabel!
     
     func set(imagePlaceholder: ImagePlaceholder) {
-        image.backgroundColor = UIColor.black
+        print(imagePlaceholder.url)
+        image.kf.setImage(with: imagePlaceholder.url)
         text.text = imagePlaceholder.text
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        image.backgroundColor = UIColor.black
-        text.text = ""
+        image.kf.cancelDownloadTask()
+        text.text = "Reuse"
     }
 }

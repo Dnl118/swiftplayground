@@ -15,11 +15,11 @@ class PlaceholderViewModel {
         return (0...length)
             .compactMap {
                 
-                guard let url : URLComponents = URLComponents(string:"http://placehold.it/\(Int(imageSize.width))x\(Int(imageSize.height))&text=image\($0)") else {
+                guard let url : URL = URL(string:"https://placehold.it/\(Int(imageSize.width))x\(Int(imageSize.height))&text=image\($0)") else {
                     return nil
                 }
                 
-                return ImagePlaceholder(url: url)
+                return ImagePlaceholder(url: url, text: "Image \($0)")
         }
     }
     
