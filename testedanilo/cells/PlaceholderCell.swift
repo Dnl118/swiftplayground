@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Kingfisher
 
 class PlaceholderCell : UICollectionViewCell {
     
@@ -16,15 +15,14 @@ class PlaceholderCell : UICollectionViewCell {
     @IBOutlet weak var text: UILabel!
     
     func set(imagePlaceholder: ImagePlaceholder) {
-        print(imagePlaceholder.url)
-        image.kf.setImage(with: imagePlaceholder.url)
+        image.loadImage(url: imagePlaceholder.url)
         text.text = imagePlaceholder.text
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        image.kf.cancelDownloadTask()
+        image.cancelKFDownload()
         text.text = "Reuse"
     }
 }
