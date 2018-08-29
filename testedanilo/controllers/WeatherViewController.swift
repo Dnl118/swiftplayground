@@ -27,7 +27,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var currentCity : City = City(id: 0, name: "Default City", country: "DC", lat: 0, lon: 0)
     
-    var isShowingDetail = true
+    var isShowingDetail = false
     
     //refresh
     lazy var refreshControl: UIRefreshControl = {
@@ -68,7 +68,9 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         
         requestDataFromServer()
         
-        showLocationDetail()
+        self.constraint.priority = UILayoutPriority(999)
+        self.containerView.isHidden = true
+        
         browseLocationDetail()
         
         weatherTable.estimatedRowHeight = 200
@@ -99,13 +101,19 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     @objc func showLocationDetail(){
         isShowingDetail = !isShowingDetail
         
-        if isShowingDetail {
-            self.constraint.priority = .defaultLow
-            self.containerView.isHidden = false
-        } else {
-            self.constraint.priority = UILayoutPriority(999)
-            self.containerView.isHidden = true
+        UIView.animate(withDuration: 1) {
+            if self.isShowingDetail {
+                self.constraint.priority = .defaultLow
+                self.containerView.alpha = 1.0
+                self.containerView.isHidden = false
+            } else {
+                self.constraint.priority = UILayoutPriority(999)
+                self.containerView.alpha = 0
+            }
+            
+            self.view.layoutIfNeeded()
         }
+
     }
     
     func browseLocationDetail() {
