@@ -27,6 +27,10 @@ class BrowseLocationController : UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("BrowseLocationController viewDidLoad()")
+        
+        webView.frame = view.bounds
+        
         self.title = currentCity.getNameAndCountry()
         
         var urlComponents : URLComponents = URLComponents(string: "https://www.google.com/maps/search/")!

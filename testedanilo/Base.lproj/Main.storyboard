@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -184,7 +185,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xza-k7-TsB">
-                                <rect key="frame" x="0.0" y="66" width="375" height="601"/>
+                                <rect key="frame" x="0.0" y="66" width="375" height="379"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="weather_cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="weather_cell" rowHeight="200" id="g2l-Zg-9p9" customClass="WeatherCell" customModule="testedanilo" customModuleProvider="target">
@@ -318,17 +319,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZM-DA-Shc">
+                                <rect key="frame" x="0.0" y="445" width="375" height="222"/>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Xza-k7-TsB" firstAttribute="top" secondItem="3us-EW-uaK" secondAttribute="bottom" id="50C-MY-0fq"/>
+                            <constraint firstItem="yZM-DA-Shc" firstAttribute="top" secondItem="Xza-k7-TsB" secondAttribute="bottom" priority="750" id="8wx-2x-Omu"/>
+                            <constraint firstItem="fdL-Zs-alW" firstAttribute="bottom" secondItem="Xza-k7-TsB" secondAttribute="bottom" priority="250" identifier="table_constraint" id="BqQ-mr-gQu"/>
+                            <constraint firstItem="yZM-DA-Shc" firstAttribute="height" secondItem="NpT-nq-wIU" secondAttribute="height" multiplier="1:3" id="Gpu-BS-hlq"/>
                             <constraint firstItem="Xza-k7-TsB" firstAttribute="leading" secondItem="fdL-Zs-alW" secondAttribute="leading" id="Mim-4S-HNv"/>
                             <constraint firstItem="3us-EW-uaK" firstAttribute="trailing" secondItem="Xza-k7-TsB" secondAttribute="trailing" id="Mr8-ts-pGb"/>
+                            <constraint firstItem="fdL-Zs-alW" firstAttribute="bottom" secondItem="yZM-DA-Shc" secondAttribute="bottom" id="OmX-qP-mca"/>
                             <constraint firstItem="HIg-oM-PPY" firstAttribute="top" secondItem="fdL-Zs-alW" secondAttribute="top" constant="15" id="RaZ-ya-kMd"/>
                             <constraint firstItem="3us-EW-uaK" firstAttribute="leading" secondItem="Xza-k7-TsB" secondAttribute="leading" id="XTo-Dj-S6X"/>
+                            <constraint firstItem="yZM-DA-Shc" firstAttribute="leading" secondItem="fdL-Zs-alW" secondAttribute="leading" id="cov-dq-O5o"/>
+                            <constraint firstItem="fdL-Zs-alW" firstAttribute="trailing" secondItem="yZM-DA-Shc" secondAttribute="trailing" id="eAE-x3-2g9"/>
                             <constraint firstItem="Xza-k7-TsB" firstAttribute="trailing" secondItem="fdL-Zs-alW" secondAttribute="trailing" id="gOX-G8-J3P"/>
                             <constraint firstItem="HIg-oM-PPY" firstAttribute="leading" secondItem="fdL-Zs-alW" secondAttribute="leading" constant="15" id="kUk-JS-k9g"/>
-                            <constraint firstAttribute="bottom" secondItem="Xza-k7-TsB" secondAttribute="bottom" id="sGp-TK-ABq"/>
                             <constraint firstItem="3us-EW-uaK" firstAttribute="top" secondItem="HIg-oM-PPY" secondAttribute="bottom" id="tdg-gJ-mc3"/>
                             <constraint firstItem="fdL-Zs-alW" firstAttribute="trailing" secondItem="HIg-oM-PPY" secondAttribute="trailing" constant="15" id="vqv-xc-AAl"/>
                         </constraints>
@@ -337,13 +346,15 @@
                     <navigationItem key="navigationItem" id="1y0-bC-EI6"/>
                     <connections>
                         <outlet property="cityName" destination="HIg-oM-PPY" id="SAx-rG-rT1"/>
+                        <outlet property="constraint" destination="BqQ-mr-gQu" id="AAp-fM-KIa"/>
+                        <outlet property="containerView" destination="yZM-DA-Shc" id="MMZ-Uf-RQF"/>
                         <outlet property="weatherTable" destination="Xza-k7-TsB" id="TVA-u5-vGO"/>
                         <segue destination="W2s-9O-JpG" kind="show" identifier="to_location" id="Ulp-fm-kTZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKW-yj-oP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1482" y="-1072"/>
+            <point key="canvasLocation" x="-1482.4000000000001" y="-1072.7136431784108"/>
         </scene>
         <!--Browse Location Controller-->
         <scene sceneID="Nqj-ua-rsO">

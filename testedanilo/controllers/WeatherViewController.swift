@@ -15,6 +15,10 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var backButton: UIButton!
     
+    @IBOutlet weak var containerView: UIView!
+    
+    @IBOutlet weak var constraint: NSLayoutConstraint!
+    
     let viewModel : WeatherTableViewModel = WeatherTableViewModel()
     
     var weatherArray : [Weather] = []
@@ -22,6 +26,8 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     var weatherPresenterArray : [WeatherPresenter] = []
     
     var currentCity : City = City(id: 0, name: "Default City", country: "DC", lat: 0, lon: 0)
+    
+    var isShowingDetail = true
     
     //refresh
     lazy var refreshControl: UIRefreshControl = {
@@ -46,20 +52,24 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         
         cityName.text = currentCity.toString()
         
-        let browseButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(browseLocationAction))
+        let mapFullButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(browseLocationFullScreen))
         
-        self.navigationItem.rightBarButtonItem = browseButton
+        let mapDetailButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(showLocationDetail))
+        
+        self.navigationItem.rightBarButtonItems = [mapFullButton, mapDetailButton]
         
         viewModel.getWeathersFromDatabase(cityID: currentCity.id, completion: { array in
             self.weatherPresenterArray = array
 
             DispatchQueue.main.async {
-//                print("from database size: \(self.weatherPresenterArray.count)")
                 self.weatherTable.reloadData()
             }
         })
         
         requestDataFromServer()
+        
+        showLocationDetail()
+        browseLocationDetail()
         
         weatherTable.estimatedRowHeight = 200
         weatherTable.rowHeight = UITableViewAutomaticDimension
@@ -71,15 +81,45 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
             self.weatherPresenterArray = array
             
             DispatchQueue.main.async {
-                //                print("from service size: \(self.weatherPresenterArray.count)")
                 self.weatherTable.reloadData()
                 self.refreshControl.endRefreshing()
             }
         })
     }
     
-    @objc func browseLocationAction(){
-        presentLocation(city: currentCity)
+    @objc func browseLocationFullScreen(){
+    
+        guard let controller : BrowseLocationController = presentLocation(city: currentCity) else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @objc func showLocationDetail(){
+        isShowingDetail = !isShowingDetail
+        
+        if isShowingDetail {
+            self.constraint.priority = UILayoutPriority(999)
+            self.containerView.isHidden = false
+        } else {
+            self.constraint.priority = .defaultLow
+            self.containerView.isHidden = true
+        }
+    }
+    
+    func browseLocationDetail() {
+        guard let controller : BrowseLocationController = presentLocation(city: currentCity) else {
+            return
+        }
+        
+        self.containerView.subviews.forEach { $0.removeFromSuperview() }
+        
+        self.containerView.addSubview(controller.view)
+        self.addChildViewController(controller)
+        
+        controller.view.frame = containerView.bounds
+        controller.view.autoresizingMask =  [ .flexibleHeight, .flexibleWidth ]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,15 +147,15 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.reloadRows(at: [indexPath], with: .none)
     }
     
-    func presentLocation(city: City) {
+    func presentLocation(city: City) -> BrowseLocationController? {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         guard let controller = storyboard.instantiateViewController(withIdentifier: "BrowseLocationController") as? BrowseLocationController else {
-            return
+            return nil
         }
-        
+
         controller.currentCity = currentCity
-        self.navigationController?.pushViewController(controller, animated: true)
+        return controller
     }
-    
+
 }
