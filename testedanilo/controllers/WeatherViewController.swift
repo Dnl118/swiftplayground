@@ -100,10 +100,10 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         isShowingDetail = !isShowingDetail
         
         if isShowingDetail {
-            self.constraint.priority = UILayoutPriority(999)
+            self.constraint.priority = .defaultLow
             self.containerView.isHidden = false
         } else {
-            self.constraint.priority = .defaultLow
+            self.constraint.priority = UILayoutPriority(999)
             self.containerView.isHidden = true
         }
     }
