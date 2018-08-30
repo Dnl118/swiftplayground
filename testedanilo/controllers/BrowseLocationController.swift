@@ -24,14 +24,14 @@ class BrowseLocationController : UIViewController, WKUIDelegate, WKNavigationDel
         webView = WKWebView(frame: view.bounds, configuration: webConfiguration)
         webView.uiDelegate = self
         webView.navigationDelegate = self
-        view.addSubview(webView)
-
-        webView.autoresizingMask =  [ .flexibleHeight, .flexibleWidth ]
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        view.addSubview(webView)
+        webView.autoresizingMask =  [ .flexibleHeight, .flexibleWidth ]
+
         startActivityIndicator()
     }
     
@@ -59,6 +59,21 @@ class BrowseLocationController : UIViewController, WKUIDelegate, WKNavigationDel
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         stopActivityIndicator()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        print("Before: \(self.view.frame)")
+        
+        coordinator.animate(alongsideTransition: { (context) in
+            print("During: \(self.view.frame)")
+        }) { (context) in
+            print("After: \(self.view.frame)")
+            
+            UIView.animate(withDuration: 0.2) {
+                self.activityIndicator.center = self.view.center
+            }
+        }
     }
     
     func startActivityIndicator() {
