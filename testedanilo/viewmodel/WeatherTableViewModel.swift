@@ -96,7 +96,7 @@ class WeatherTableViewModel {
                     return
             }
             
-            let deletedWeathers = weathersMO.compactMap {
+            weathersMO.forEach {
                 if let weatherMO = $0 as? WeatherMO {
                     context.delete(weatherMO)
                     //                    print("deleted: \(weatherMO.date_text ?? "ERROR")")

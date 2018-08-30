@@ -17,8 +17,6 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var containerView: UIView!
     
-    @IBOutlet weak var constraint: NSLayoutConstraint!
-    
     let viewModel : WeatherTableViewModel = WeatherTableViewModel()
     
     var weatherArray : [Weather] = []
@@ -67,8 +65,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         })
         
         requestDataFromServer()
-        
-        self.constraint.priority = UILayoutPriority(999)
+
         self.containerView.isHidden = true
         
         browseLocationDetail()
@@ -101,14 +98,11 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     @objc func showLocationDetail(){
         isShowingDetail = !isShowingDetail
         
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.3) {
             if self.isShowingDetail {
-                self.constraint.priority = .defaultLow
-                self.containerView.alpha = 1.0
                 self.containerView.isHidden = false
             } else {
-                self.constraint.priority = UILayoutPriority(999)
-                self.containerView.alpha = 0
+                self.containerView.isHidden = true
             }
             
             self.view.layoutIfNeeded()
