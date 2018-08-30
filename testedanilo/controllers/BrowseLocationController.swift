@@ -21,18 +21,26 @@ class BrowseLocationController : UIViewController, WKUIDelegate, WKNavigationDel
         super.loadView()
         
         let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: view.bounds, configuration: webConfiguration)
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
         webView.navigationDelegate = self
+        
+        view.addSubview(webView)
+        webView.autoresizingMask =  [ .flexibleHeight, .flexibleWidth ]
+        
+        view.addSubview(activityIndicator)
+        view.bringSubview(toFront: activityIndicator)
+        
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        
+        activityIndicator.autoresizingMask = [ .flexibleTopMargin, .flexibleRightMargin, .flexibleBottomMargin, .flexibleBottomMargin ]
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        view.addSubview(webView)
-        webView.autoresizingMask =  [ .flexibleHeight, .flexibleWidth ]
-
-        startActivityIndicator()
+        activityIndicator.center = view.center
     }
     
     override func viewDidLoad() {
@@ -54,11 +62,11 @@ class BrowseLocationController : UIViewController, WKUIDelegate, WKNavigationDel
         let myRequest = URLRequest(url: urlComponents.url!)
         webView.load(myRequest)
         
-        startActivityIndicator()
+        activityIndicator.startAnimating()
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        stopActivityIndicator()
+        activityIndicator.stopAnimating()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -74,21 +82,5 @@ class BrowseLocationController : UIViewController, WKUIDelegate, WKNavigationDel
                 self.activityIndicator.center = self.view.center
             }
         }
-    }
-    
-    func startActivityIndicator() {
-        activityIndicator.center = view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(activityIndicator)
-        view.bringSubview(toFront: activityIndicator)
-        
-        activityIndicator.autoresizingMask = [ .flexibleTopMargin, .flexibleRightMargin, .flexibleBottomMargin, .flexibleBottomMargin ]
-        
-        activityIndicator.startAnimating()
-    }
-    
-    func stopActivityIndicator() {
-        activityIndicator.stopAnimating()
     }
 }
