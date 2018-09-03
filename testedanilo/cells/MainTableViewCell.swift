@@ -12,11 +12,13 @@ class MainTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cityLabel: UILabel!
 
-    let decorator : LabelDecoratorProtocol = DecoratorFactory.getLabelDecorator()
+    let labelDecorator : LabelDecoratorProtocol = DecoratorFactory.getLabelDecorator()
+    let tableDecorator : TableDecoratorProtocol = DecoratorFactory.getTableDecorator()
     
     func setCity(city: City) {
         cityLabel.text = city.toString()
-        decorator.decorate(tableLabel: cityLabel)
+        labelDecorator.decorate(tableLabel: cityLabel)
+        tableDecorator.decorate(tableCell: self)
     }
     
     override func prepareForReuse() {

@@ -12,6 +12,8 @@
 		310BE563213D694C009EAD33 /* DecoratorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BE562213D694C009EAD33 /* DecoratorFactory.swift */; };
 		310BE566213D6F69009EAD33 /* LabelDecoratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BE565213D6F69009EAD33 /* LabelDecoratorProtocol.swift */; };
 		310BE56B213D75A6009EAD33 /* LabelDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BE56A213D75A6009EAD33 /* LabelDecorator.swift */; };
+		310BE570213DB545009EAD33 /* TableDecoratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BE56F213DB545009EAD33 /* TableDecoratorProtocol.swift */; };
+		310BE572213DB5DC009EAD33 /* TableDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BE571213DB5DC009EAD33 /* TableDecorator.swift */; };
 		311B995B212EEA64008AC618 /* CityMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311B9957212EEA64008AC618 /* CityMO+CoreDataClass.swift */; };
 		311B995C212EEA64008AC618 /* CityMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311B9958212EEA64008AC618 /* CityMO+CoreDataProperties.swift */; };
 		311B995D212EEA64008AC618 /* WeatherMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311B9959212EEA64008AC618 /* WeatherMO+CoreDataClass.swift */; };
@@ -68,6 +70,8 @@
 		310BE562213D694C009EAD33 /* DecoratorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoratorFactory.swift; sourceTree = "<group>"; };
 		310BE565213D6F69009EAD33 /* LabelDecoratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDecoratorProtocol.swift; sourceTree = "<group>"; };
 		310BE56A213D75A6009EAD33 /* LabelDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDecorator.swift; sourceTree = "<group>"; };
+		310BE56F213DB545009EAD33 /* TableDecoratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDecoratorProtocol.swift; sourceTree = "<group>"; };
+		310BE571213DB5DC009EAD33 /* TableDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDecorator.swift; sourceTree = "<group>"; };
 		311B9957212EEA64008AC618 /* CityMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CityMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		311B9958212EEA64008AC618 /* CityMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CityMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		311B9959212EEA64008AC618 /* WeatherMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherMO+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 				310BE562213D694C009EAD33 /* DecoratorFactory.swift */,
 				310BE565213D6F69009EAD33 /* LabelDecoratorProtocol.swift */,
 				310BE56A213D75A6009EAD33 /* LabelDecorator.swift */,
+				310BE56F213DB545009EAD33 /* TableDecoratorProtocol.swift */,
+				310BE571213DB5DC009EAD33 /* TableDecorator.swift */,
 			);
 			path = decorator;
 			sourceTree = "<group>";
@@ -510,6 +516,8 @@
 				31276D4221347A90004FA2C0 /* PlaceholderCell.swift in Sources */,
 				31999E1D212DA44600243751 /* BrowseLocationController.swift in Sources */,
 				31276D3E21346574004FA2C0 /* PlaceholderViewModel.swift in Sources */,
+				310BE572213DB5DC009EAD33 /* TableDecorator.swift in Sources */,
+				310BE570213DB545009EAD33 /* TableDecoratorProtocol.swift in Sources */,
 				31276D4021347204004FA2C0 /* ImagePlaceholder.swift in Sources */,
 				31E7B9AE2126048900C759FB /* CitiesService.swift in Sources */,
 				313CA29921220D74003DC311 /* JSONParser.swift in Sources */,

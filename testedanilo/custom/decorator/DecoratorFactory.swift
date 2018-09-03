@@ -14,4 +14,7 @@ class DecoratorFactory {
         return LabelDecorator()
     }
     
+    class func getTableDecorator() -> TableDecorator {
+        return TableDecorator()
+    }
 }

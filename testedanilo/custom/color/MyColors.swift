@@ -11,11 +11,16 @@ import UIKit
 
 class MyColors {
     let labelColor = LabelColor()
+    let tableColor = TableColor()
     
     let background = UIColor.darkGray
 }
 
 struct LabelColor {
-    let text = UIColor.blue
-    let tableText = UIColor.brown
+    let text = UIColor.red
+    let tableText = UIColor.lightGray
+}
+
+struct TableColor {
+    let background = UIColor.darkGray
 }

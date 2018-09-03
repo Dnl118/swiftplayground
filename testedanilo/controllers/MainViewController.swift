@@ -19,6 +19,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let viewModel : MainViewModel = MainViewModel()
     
+    let decorator : TableDecoratorProtocol = DecoratorFactory.getTableDecorator()
+    
     //refresh
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()

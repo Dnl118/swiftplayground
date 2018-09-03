@@ -22,6 +22,9 @@ class WeatherCell: UITableViewCell {
     
     @IBOutlet weak var detailsStackView: UIStackView!
     
+    let labelDecorator : LabelDecoratorProtocol = DecoratorFactory.getLabelDecorator()
+    let tableDecorator : TableDecoratorProtocol = DecoratorFactory.getTableDecorator()
+
     func setWeather(weatherPresenter: WeatherPresenter) {
         date.text = weatherPresenter.getTextDate()
         min.text = weatherPresenter.getMinTemp()
@@ -32,6 +35,18 @@ class WeatherCell: UITableViewCell {
         nightWeather.text = weatherPresenter.getNightWeather()
         pressure.text = weatherPresenter.getPressure()
         humidity.text = weatherPresenter.getHumidity()
+        
+        labelDecorator.decorate(tableLabel: date)
+        labelDecorator.decorate(tableLabel: min)
+        labelDecorator.decorate(tableLabel: max)
+        labelDecorator.decorate(tableLabel: earlyWeather)
+        labelDecorator.decorate(tableLabel: morningWeather)
+        labelDecorator.decorate(tableLabel: eveningWeather)
+        labelDecorator.decorate(tableLabel: nightWeather)
+        labelDecorator.decorate(tableLabel: pressure)
+        labelDecorator.decorate(tableLabel: humidity)
+        
+        tableDecorator.decorate(tableCell: self)
         
         detailsStackView.isHidden = true
     }
