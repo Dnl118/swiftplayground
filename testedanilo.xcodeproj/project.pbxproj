@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3106832A2125AC030040E518 /* WeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310683292125AC030040E518 /* WeatherPresenter.swift */; };
+		310BE561213D6785009EAD33 /* MyColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BE560213D6785009EAD33 /* MyColors.swift */; };
+		310BE563213D694C009EAD33 /* DecoratorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BE562213D694C009EAD33 /* DecoratorFactory.swift */; };
+		310BE566213D6F69009EAD33 /* LabelDecoratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BE565213D6F69009EAD33 /* LabelDecoratorProtocol.swift */; };
+		310BE56B213D75A6009EAD33 /* LabelDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BE56A213D75A6009EAD33 /* LabelDecorator.swift */; };
 		311B995B212EEA64008AC618 /* CityMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311B9957212EEA64008AC618 /* CityMO+CoreDataClass.swift */; };
 		311B995C212EEA64008AC618 /* CityMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311B9958212EEA64008AC618 /* CityMO+CoreDataProperties.swift */; };
 		311B995D212EEA64008AC618 /* WeatherMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311B9959212EEA64008AC618 /* WeatherMO+CoreDataClass.swift */; };
@@ -60,6 +64,10 @@
 
 /* Begin PBXFileReference section */
 		310683292125AC030040E518 /* WeatherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPresenter.swift; sourceTree = "<group>"; };
+		310BE560213D6785009EAD33 /* MyColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyColors.swift; sourceTree = "<group>"; };
+		310BE562213D694C009EAD33 /* DecoratorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoratorFactory.swift; sourceTree = "<group>"; };
+		310BE565213D6F69009EAD33 /* LabelDecoratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDecoratorProtocol.swift; sourceTree = "<group>"; };
+		310BE56A213D75A6009EAD33 /* LabelDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDecorator.swift; sourceTree = "<group>"; };
 		311B9957212EEA64008AC618 /* CityMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CityMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		311B9958212EEA64008AC618 /* CityMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CityMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		311B9959212EEA64008AC618 /* WeatherMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherMO+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -136,6 +144,33 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		310BE55D213D674C009EAD33 /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				310BE55F213D676A009EAD33 /* color */,
+				310BE55E213D6766009EAD33 /* decorator */,
+			);
+			path = custom;
+			sourceTree = "<group>";
+		};
+		310BE55E213D6766009EAD33 /* decorator */ = {
+			isa = PBXGroup;
+			children = (
+				310BE562213D694C009EAD33 /* DecoratorFactory.swift */,
+				310BE565213D6F69009EAD33 /* LabelDecoratorProtocol.swift */,
+				310BE56A213D75A6009EAD33 /* LabelDecorator.swift */,
+			);
+			path = decorator;
+			sourceTree = "<group>";
+		};
+		310BE55F213D676A009EAD33 /* color */ = {
+			isa = PBXGroup;
+			children = (
+				310BE560213D6785009EAD33 /* MyColors.swift */,
+			);
+			path = color;
+			sourceTree = "<group>";
+		};
 		311D3209212441260023E927 /* services */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +206,7 @@
 		313CA25A2121BD8E003DC311 /* testedanilo */ = {
 			isa = PBXGroup;
 			children = (
+				310BE55D213D674C009EAD33 /* custom */,
 				31E11DAB2135777900B1BBB1 /* extensions */,
 				31E7B9AF2126FFF100C759FB /* data */,
 				31E7B9A82125FC8D00C759FB /* viewmodel */,
@@ -463,6 +499,8 @@
 				31B3634021270BB6007953AF /* CoreDataManager.swift in Sources */,
 				31E3C5B82123154600286021 /* WeatherViewController.swift in Sources */,
 				311B995D212EEA64008AC618 /* WeatherMO+CoreDataClass.swift in Sources */,
+				310BE563213D694C009EAD33 /* DecoratorFactory.swift in Sources */,
+				310BE56B213D75A6009EAD33 /* LabelDecorator.swift in Sources */,
 				31E3C5BD21234E1B00286021 /* WeatherCell.swift in Sources */,
 				313CA25C2121BD8E003DC311 /* AppDelegate.swift in Sources */,
 				311B995B212EEA64008AC618 /* CityMO+CoreDataClass.swift in Sources */,
@@ -479,8 +517,10 @@
 				313CA28D2121BEB0003DC311 /* MainViewController.swift in Sources */,
 				313CA2912121C9DC003DC311 /* MainTableViewCell.swift in Sources */,
 				31276D3C21345F6D004FA2C0 /* PlaceholderController.swift in Sources */,
+				310BE566213D6F69009EAD33 /* LabelDecoratorProtocol.swift in Sources */,
 				31E7B9AA2125FD3200C759FB /* MainViewModel.swift in Sources */,
 				31E7B9AC2125FD5600C759FB /* WeatherTableViewModel.swift in Sources */,
+				310BE561213D6785009EAD33 /* MyColors.swift in Sources */,
 				311D320B212444AF0023E927 /* WeatherService.swift in Sources */,
 				313CA2642121BD8E003DC311 /* testedanilo.xcdatamodeld in Sources */,
 			);
