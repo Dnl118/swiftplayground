@@ -15,8 +15,8 @@ struct LabelDecorator {
 
 extension LabelDecorator : LabelDecoratorProtocol {
     
-    func decorate(label: UILabel) {
-        label.textColor = colors.labelColor.text
+    func decorate(labelTitle: UILabel) {
+        labelTitle.textColor = colors.labelColor.text
     }
     
     func decorate(tableLabel: UILabel) {

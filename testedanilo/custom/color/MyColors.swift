@@ -16,6 +16,6 @@ class MyColors {
 }
 
 struct LabelColor {
-    let text = UIColor.darkText
+    let text = UIColor.blue
     let tableText = UIColor.brown
 }

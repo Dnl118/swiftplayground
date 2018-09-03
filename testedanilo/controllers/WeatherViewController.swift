@@ -27,6 +27,8 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var isShowingDetail = false
     
+    let decorator : LabelDecoratorProtocol = DecoratorFactory.getLabelDecorator()
+    
     //refresh
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -49,6 +51,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         self.title = "Weather"
         
         cityName.text = currentCity.toString()
+        decorator.decorate(labelTitle: cityName)
         
         let mapFullButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(browseLocationFullScreen))
         

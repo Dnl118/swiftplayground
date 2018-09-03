@@ -11,7 +11,7 @@ import UIKit
 
 protocol LabelDecoratorProtocol {
     
-    func decorate(label: UILabel)
+    func decorate(labelTitle: UILabel)
     func decorate(tableLabel: UILabel)
     
 }
